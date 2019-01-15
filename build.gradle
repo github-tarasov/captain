@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+configurations.all {
+	exclude group:'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit:2.0.2.RELEASE'
+	compile 'org.projectlombok:lombok'
+	compile 'io.springfox:springfox-swagger2:2.9.1'
+	compile 'io.springfox:springfox-swagger-ui:2.9.1'
+	compile 'org.springframework.boot:spring-boot-starter-log4j2'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support:2.0.2.RELEASE'
+	compile 'junit:junit'
+}
