@@ -13,5 +13,5 @@ script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t captain .
   - docker images
-  - docker tag links $DOCKER_USERNAME/captain
+  - docker tag captain $DOCKER_USERNAME/captain
   - docker push $DOCKER_USERNAME/captain
